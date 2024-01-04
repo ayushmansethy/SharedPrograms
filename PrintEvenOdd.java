@@ -1,29 +1,14 @@
 
-public class PrintEvenOdd {
-
-    public static void main(String... args) {
-    Printer print = new Printer();
-    Thread t1 = new Thread(new TaskEvenOdd(print, 10, false));
-    Thread t2 = new Thread(new TaskEvenOdd(print, 10, true));
-    t1.start();
-    t2.start();
-}
-}
-
- class TaskEvenOdd implements Runnable {
+class TaskEvenOdd implements Runnable {
     private int max;
     private Printer print;
     private boolean isEvenNumber;
 
-    
-
-    public TaskEvenOdd( Printer print,int max, boolean isEvenNumber) {
+    public TaskEvenOdd(Printer print, int max, boolean isEvenNumber) {
         this.max = max;
         this.print = print;
         this.isEvenNumber = isEvenNumber;
     }
-
-
 
     @Override
     public void run() {
@@ -38,6 +23,7 @@ public class PrintEvenOdd {
         }
     }
 }
+
 class Printer {
     private volatile boolean isOdd;
 
@@ -46,10 +32,10 @@ class Printer {
             try {
                 wait();
             } catch (InterruptedException e) {
-               e.printStackTrace();
+                e.printStackTrace();
             }
         }
-        System.out.println( number);
+        System.out.println(number);
         isOdd = false;
         notify();
     }
@@ -65,5 +51,15 @@ class Printer {
         System.out.println(number);
         isOdd = true;
         notify();
+    }
+}
+public class PrintEvenOdd {
+
+    public static void main(String... args) {
+        Printer print = new Printer();
+        Thread t1 = new Thread(new TaskEvenOdd(print, 10, false));
+        Thread t2 = new Thread(new TaskEvenOdd(print, 10, true));
+        t1.start();
+        t2.start();
     }
 }

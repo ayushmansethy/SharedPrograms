@@ -1,15 +1,5 @@
 import java.util.concurrent.Semaphore;
 
-public class PrintOddEvenSemaphore {
-
-    public static void main(String[] args) {
-        SharedPrinter sp = new SharedPrinter();
-        Thread odd = new Thread(new Odd(sp, 10));
-        Thread even = new Thread(new Even(sp, 10));
-        odd.start();
-        even.start();
-    }
-}
 class SharedPrinter {
 
     private Semaphore semEven = new Semaphore(0);
@@ -74,5 +64,15 @@ class Odd implements Runnable {
         for (int i = 1; i <= max; i = i + 2) {
             sp.printOddNum(i);
         }
+    }
+}
+public class PrintOddEvenSemaphore {
+
+    public static void main(String[] args) {
+        SharedPrinter sp = new SharedPrinter();
+        Thread odd = new Thread(new Odd(sp, 10));
+        Thread even = new Thread(new Even(sp, 10));
+        odd.start();
+        even.start();
     }
 }
