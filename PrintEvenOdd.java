@@ -46,7 +46,7 @@ class Printer {
             try {
                 wait();
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+               e.printStackTrace();
             }
         }
         System.out.println( number);
@@ -59,7 +59,7 @@ class Printer {
             try {
                 wait();
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+                e.printStackTrace();
             }
         }
         System.out.println(number);
