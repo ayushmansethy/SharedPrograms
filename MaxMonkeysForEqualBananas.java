@@ -28,7 +28,7 @@ public class MaxMonkeysForEqualBananas {
                 maxMonkeys = i;
             } else {
                 // Break the loop when we can no longer have monkeys with equal bananas
-                break;
+                // break;
             }
         }
 
